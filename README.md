@@ -28,11 +28,13 @@ output will be the list of actions
 |:----|:-----:|:--------:|
 | **`Algorithm`** | | A series of instructions that perform a task. |
 | [Right-Left rule](https://riptutorial.com/c/example/18833/using-the-right-left-or-spiral-rule-to-decipher-c-declaration) | `int *p[];` `array of pointers to integers` | How to read variables in C more efficiently. |
-| **`Boilerplate code`** || Sections of code repeated in multiple places with little to no variation. When using languages that are considered verbose, the programmer must write a lot of boilerplate code to accomplish only minor functionality. |
+| **`Boilerplate code`** || Code sections repeated in multiple places with little to no variation. When using languages that are considered verbose, the programmer must write a lot of boilerplate code to accomplish only minor functionality. |
 | **`Insertion sort`**| | |
 | **`check if the input is correct`** | `if (argc == 1 or (argc == 2 && !argv[1][0]))` | If there is only one argument or the argument is an empty string, returns an error and stops the program. |
-| **`2D matrix must carry same data`** | `argv = ft_split(argv[1], 32)` | The user could write `./push_swap 1337 42 -16` or `./push_swap "1337 42 -16"` and the function must result in the same. Meaning, the first example has 4 values, and the second 2 (this should be split to carry 4 as well). However, what if the user mix inputs? `1 2 3 "4 5 6" 8 9` |
+| **`2D matrix must carry same data`** | `argv = ft_split(argv[1], 32)` | The user could write `./push_swap 1337 42 -16` or `./push_swap "1337 42 -16"` and the function must result in the same. The first example has 4 values, and the second 2 (this should be split to carry 4 as well). However, what if the user mix inputs? `1 2 3 "4 5 6" 8 9` |
 | **`static function - static variable`** | | Static function is only available within the file it's in. Static variable... |
 | **`ft_atoll`** | `long long	ft_atoll(const char *nptr)` | Takes a string and returns a [long long int](https://www.geeksforgeeks.org/difference-between-long-int-and-long-long-int-in-c-cpp/). |
 | **`Check repetitions`** | `./pipex 42 42` | Repetitions should trow an error. |
+| **`Random numbers generator`** | `add command line input` | [Calculator Soup](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php) |
+| **`ANSI escape sequences`** |  | [ANSI escape sequences](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-bash-ps1-prompt)|
 
