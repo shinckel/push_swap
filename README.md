@@ -2,11 +2,12 @@
 This project was developed for 42 school. For comprehensive information regarding the requirements, please consult the PDF file in the subject folder of the repository. Furthermore, I have provided my notes and a concise summary below.
 ``` diff
 + keywords: sorting algorithm
++ linked list
 ```
 
 ## High-level Overview
 
-This is a straightforward algorithm project: data (integers received as arguments) must be sorted, in the fastest way possible. There are two stacks: A receives the group of integers and B supports A's movements as a tmp placeholder.
+This is a straightforward algorithm project: data (integers received as arguments) must be sorted, in the fastest way possible. There are two stacks: `A` receives the group of integers and `B` supports `A`'s movements as a tmp placeholder.
 
 1. Sort a stack using the least amount of instructions (a.k.a. **actions**);
 2. `Stack A` is given a random list of unorganized numbers;
