@@ -11,7 +11,7 @@ This is a straightforward algorithm project: data (integers received as argument
 
 1. Sort a stack using the least amount of instructions (a.k.a. **actions**);
 2. `Stack A` is given a random list of unorganized numbers;
-3. Sort them so that `Stack A` is organized from smallest to largest;
+3. Sort them so that `Stack A` is organized from smallest to largest, in ascending order;
 4. The actions are named: `sa`, `sb`, `ss`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`, `pa`, `pb`;
 
 input `./push_swap 1337 42 -16`
@@ -38,4 +38,7 @@ output will be the list of actions
 | **`Check repetitions`** | `./pipex 42 42` | Repetitions should trow an error. |
 | **`Random numbers generator`** | `add command line input` | [Calculator Soup](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php) |
 | **`ANSI escape sequences`** |  | [ANSI escape sequences](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-bash-ps1-prompt)|
+| **`tiny_sort`** | `trivial sorting, 3 numbers` | In the worst scenario, a maximum of two moves. Is the first node the biggest value? Yes, rotate `a`. No, check if the second node is the biggest, ensuring it is in the bottom position. |
+| **`More than three`**| `push_swap(&a, &b)` | Push the nodes to `b` until only three nodes remain in `a` for `tiny_sort(a)`. Perform a precise insertion of the node from `b` to `a`. For it, you need a strategy: every node in `b` will have a `target_node` in `a`. The target will be the next value in `a`, meaning, a value one node bigger than `b` itself. If the value is already the biggest, it should point to the smallest value in the stack `a` (a.k.a. cheapest). In addition, set the current position and the price (`b->current_position + target_node->current_position`), what is the cost of each node to bring to the top of the stack? |
+| **`cost`** | `How many moves to bring to the top?` | Because the start and the end of the list have a distance of only one move, it is not possible to calculate the distance until the top only through the natural list order. It is necessary to divide the stack in two: |
 
