@@ -22,7 +22,6 @@ output will be the list of actions
 [push_swap : a performant sorting algorithm using 2 stacks (100-630 moves | 500-5470 moves)](https://www.youtube.com/watch?v=OaG81sDEpVk) <br />
 [Push Swap — A journey to find most efficient sorting algorithm](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) <br />
 
-
 ## Concepts
 
 | Task | Prototype | Description |
@@ -39,6 +38,7 @@ output will be the list of actions
 | **`Random numbers generator`** | `add command line input` | [Calculator Soup](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php) |
 | **`ANSI escape sequences`** |  | [ANSI escape sequences](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-bash-ps1-prompt)|
 | **`tiny_sort`** | `trivial sorting, 3 numbers` | In the worst scenario, a maximum of two moves. Is the first node the biggest value? Yes, rotate `a`. No, check if the second node is the biggest, ensuring it is in the bottom position. |
-| **`More than three`**| `push_swap(&a, &b)` | Push the nodes to `b` until only three nodes remain in `a` for `tiny_sort(a)`. Perform a precise insertion of the node from `b` to `a`. For it, you need a strategy: every node in `b` will have a `target_node` in `a`. The target will be the next value in `a`, meaning, a value one node bigger than `b` itself. If the value is already the biggest, it should point to the smallest value in the stack `a` (a.k.a. cheapest). In addition, set the current position and the price (`b->current_position + target_node->current_position`), what is the cost of each node to bring to the top of the stack? |
-| **`cost`** | `How many moves to bring to the top?` | Because the start and the end of the list have a distance of only one move, it is not possible to calculate the distance until the top only through the natural list order. It is necessary to divide the stack in two: |
+| **`More than three`**| `push_swap(&a, &b)` | Push the nodes to `b` until only three nodes remain in `a` for `tiny_sort(a)`. Perform a precise insertion of the node from `b` to `a`. For it, you need a strategy: every node in `b` will have a `target_node` in `a`. The target will be the next value in `a`, which is one node bigger than `b` itself. If the value is already the biggest, it should point to the smallest value in the stack `a` (a.k.a. cheapest). In addition, set the current position and the price (`b->current_position + target_node->current_position`), what is the cost of each node to bring to the top of the stack? |
+| **`cost`** | `How many moves to bring to the top?` | Because the start and the end of the list have a distance of only one move, it is not possible to calculate the distance to the top only through the natural list order. It is necessary to divide the stack in two: everything in the middle of the stack is the most expensive. The first node has cost zero because it is already in the ideal position. Therefore, the cost is proportional to the position and the length of the stack. What is the cost of pushing node and target node? Because both needs to be in the first position, for then applying the action `pa` in putting them into order. This is a continuous calculation, done in each iteration. |
+| **`move nodes`** | | In every configuration I get one cheapest node, with the smallest cost. This function will return me back a pointer to the cheapest: you are the cheapest and I want to move you. If both node and target are above the median, rotate both (two moves simultaneously, reduce the cost in half). |
 
