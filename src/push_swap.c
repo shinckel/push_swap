@@ -5,30 +5,120 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 19:06:40 by shinckel          #+#    #+#             */
-/*   Updated: 2023/08/05 12:15:32 by shinckel         ###   ########.fr       */
+/*   Created: 2023/08/15 16:33:15 by shinckel          #+#    #+#             */
+/*   Updated: 2023/09/01 17:21:51 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h";
+#include "push_swap.h"
 
-// first, check in input is correct
-// then, create the stack and sort it!
-
-// check again else if statement... if the user mix inputs? 1 2 3 "4 5 6" 8 9
-// stack_init(&a, argv, argc == 2); - &a is a pointer to a pointer, so I can change de real value without making a local copy of it
-// is is taking strings as arguments of the numbers I want to populate the stack
-// it is a pointer to a pointer, that initially is NULL
-int	main(int argc, char **argv)
+/*
+ * Loop decays once
+ * 		~cheapest_node tops is a
+ * 		~relative target_node tops in b
+*/
+static void	rotate_both(t_stack_node **a,
+						t_stack_node **b,
+						t_stack_node *cheapest_node)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
+	while (*a != cheapest_node->target_node
+		&& *b != cheapest_node)
+		rotate(a, b, "rr");
+	set_current_position(*a);
+	set_current_position(*b);
+}
 
-	a = NULL;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	else if (argc == 2)
-		argv = ft_split(argv[1], 32);
-	stack_init(&a, argv, argc == 2);
+static void	reverse_rotate_both(t_stack_node **a,
+								t_stack_node **b,
+								t_stack_node *cheapest_node)
+{
+	while (*a != cheapest_node->target_node
+		&& *b != cheapest_node)
+		rrr(a, b, false);
+	set_current_position(*a);
+	set_current_position(*b);
+}
+
+/*
+ * Conclude the rotation of the stacks 
+*/
+void	finish_rotation(t_stack_node **stack,
+							t_stack_node *top_node,
+							char stack_name)
+{
+	while (*stack != top_node)
+	{
+		if (stack_name == 'a')
+		{
+			if (top_node->above_median)
+				rotate(stack, 0, "ra");
+			else
+				rra(stack, false);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_median)
+				rotate(stack, 0, "rb");
+			else
+				rrb(stack, false);
+		}	
+	}
+}
+
+/*
+ * Move the node from 'b' to 'a'
+ * with the metadata available in the node
+ * 1)Make the target nodes emerge
+ * 2)push in A
+*/
+static void	move_nodes(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*cheapest_node;
+
+	cheapest_node = return_cheapest(*b);
+	if (cheapest_node->above_median
+		&& cheapest_node->target_node->above_median)
+		rotate_both(a, b, cheapest_node);
+	else if (!(cheapest_node->above_median)
+		&& !(cheapest_node->target_node->above_median))
+		reverse_rotate_both(a, b, cheapest_node);
+	finish_rotation(b, cheapest_node, 'b');
+	finish_rotation(a, cheapest_node->target_node, 'a');
+	push(a, b, "pa");
+}
+
+/*
+ * ~Push all nodes in B 
+ * ~For every configuration choose the "cheapest_node"
+ * ~Push everything back in A in order
+*/
+void	push_swap(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*smallest;
+	int				len_a;
+
+	len_a = stack_len(*a);
+	if (len_a == 5)
+		handle_five(a, b);
+	else
+	{
+		while (len_a-- > 3)
+			push(b, a, "pb");
+	}
+	print_list(a);
+	tiny_sort(a);
+	print_list(a);
+	while (*b)
+	{
+		init_nodes(*a, *b);
+		move_nodes(a, b);
+	}
+	set_current_position(*a);
+	smallest = find_smallest(*a);
+	if (smallest->above_median)
+		while (*a != smallest)
+			rotate(a, 0, "ra");
+	else
+		while (*a != smallest)
+			rra(a, false);
 }
