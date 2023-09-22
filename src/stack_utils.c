@@ -45,29 +45,24 @@ static t_stack_node	*find_highest(t_stack_node *stack)
 	return (highest_node);
 }
 
-/*
- * When i have 3 nodes, easy to sort
- * 	~If the 1* is the biggest, ra (biggestto bottom)
- * 	~If the 2* is the biggest, rra (biggest to bottom)
- * 	~Now i have forcefully the Biggest at the bottom
- * 		so i just chek 1° and 2°
-*/
+// handle input when there are 3 nodes, easy to sort
+// if first is the biggest - ra (biggest to bottom)
+// if second is the biggest - rra (biggest to bottom)
+// biggest at the bottom - check first and second node
 void	tiny_sort(t_stack_node **a)
 {
 	t_stack_node	*highest_node;
 
 	highest_node = find_highest(*a);
 	if (*a == highest_node)
-		rotate(a, NULL, "ra"); //ra(a, false);
+		rotate(a, NULL, "ra");
 	else if ((*a)->next == highest_node)
-		reverse_rotate(a, NULL, "rra"); //rra(a, false);
+		reverse_rotate(a, NULL, "rra");
 	if ((*a)->value > (*a)->next->value)
-		swap(a, "sa"); //sa(a, false);
+		swap(a, "sa");
 }
 
-/*
- * Handle input 5
-*/
+// handle input when there are 5 nodes
 void	handle_five(t_stack_node **a, t_stack_node **b)
 {
 	while (stack_len(*a) > 3)
