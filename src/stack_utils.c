@@ -58,11 +58,11 @@ void	tiny_sort(t_stack_node **a)
 
 	highest_node = find_highest(*a);
 	if (*a == highest_node)
-		rotate(a, 0, "ra");
+		rotate(a, NULL, "ra"); //ra(a, false);
 	else if ((*a)->next == highest_node)
-		rra(a, false);
+		reverse_rotate(a, NULL, "rra"); //rra(a, false);
 	if ((*a)->value > (*a)->next->value)
-		sa(a, false);
+		swap(a, "sa"); //sa(a, false);
 }
 
 /*
@@ -74,6 +74,6 @@ void	handle_five(t_stack_node **a, t_stack_node **b)
 	{
 		init_nodes(*a, *b);
 		finish_rotation(a, find_smallest(*a), 'a');
-		push(b, a, "pb");
+		push(b, a, "pb"); //pb(b, a, false);
 	}
 }

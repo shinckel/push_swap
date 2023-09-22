@@ -54,12 +54,14 @@ typedef struct	s_stack_node
 	bool				above_median;
 	bool				cheapest;
 	struct s_stack_node	*target_node;
+	struct s_stack_node	*prev;
 	struct s_stack_node	*next;
 	// struct s_stack_node	*prev;
 }				t_stack_node;
 
-// help and check list
-void print_list(t_stack_node **list);
+// help and check list, user messages
+void	print_list(t_stack_node **list);
+void	user_message(char *str);
 
 // handle errors & free
 void			free_matrix(char **argv);
@@ -77,7 +79,7 @@ void			set_cheapest(t_stack_node *b);
 
 // linked list
 void			append_node(t_stack_node **stack, int nbr);
-t_stack_node	*find_last_node(t_stack_node *head, bool find_previous);
+t_stack_node	*find_last_node(t_stack_node *head);
 t_stack_node	*find_smallest(t_stack_node *stack);
 t_stack_node	*return_cheapest(t_stack_node *stack);
 bool			stack_sorted(t_stack_node *stack);
@@ -93,16 +95,18 @@ void			push_swap(t_stack_node **a, t_stack_node **b);
 void	push(t_stack_node **destRef, t_stack_node **sourceRef, char *str);
 void	rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
 void	reverse_rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
-void			sa(t_stack_node **a, bool checker);
-void			sb(t_stack_node **b, bool checker);
-void			ss(t_stack_node **a, t_stack_node **b, bool checker);
-void			ra(t_stack_node **a, bool checker);
-void			rb(t_stack_node **b, bool checker);
-void			rr(t_stack_node **a, t_stack_node **b, bool checker);
-void			rra(t_stack_node **a, bool checker);
-void			rrb(t_stack_node **b, bool checker);
-void			rrr(t_stack_node **a, t_stack_node **b, bool checker);
-void			pa(t_stack_node **a, t_stack_node **b);
-void			pb(t_stack_node **b, t_stack_node **a);
+void	swap(t_stack_node **headRef, char *str);
+
+// void			sa(t_stack_node **a, bool checker);
+// void			sb(t_stack_node **b, bool checker);
+// void			ss(t_stack_node **a, t_stack_node **b, bool checker);
+// void			ra(t_stack_node **a, bool checker);
+// void			rb(t_stack_node **b, bool checker);
+// void			rr(t_stack_node **a, t_stack_node **b, bool checker);
+// void			rra(t_stack_node **a, bool checker);
+// void			rrb(t_stack_node **b, bool checker);
+// void			rrr(t_stack_node **a, t_stack_node **b, bool checker);
+// void	pa(t_stack_node **a, t_stack_node **b, bool checker);
+// void	pb(t_stack_node **b, t_stack_node **a, bool checker);
 
 #endif
