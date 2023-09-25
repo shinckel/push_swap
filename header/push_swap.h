@@ -56,7 +56,6 @@ typedef struct	s_stack_node
 	struct s_stack_node	*target_node;
 	struct s_stack_node	*prev;
 	struct s_stack_node	*next;
-	// struct s_stack_node	*prev;
 }				t_stack_node;
 
 // help and check list, user messages
@@ -96,17 +95,5 @@ void	push(t_stack_node **destRef, t_stack_node **sourceRef, char *str);
 void	rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
 void	reverse_rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
 void	swap(t_stack_node **headRef, char *str);
-
-// void			sa(t_stack_node **a, bool checker);
-// void			sb(t_stack_node **b, bool checker);
-// void			ss(t_stack_node **a, t_stack_node **b, bool checker);
-// void			ra(t_stack_node **a, bool checker);
-// void			rb(t_stack_node **b, bool checker);
-// void			rr(t_stack_node **a, t_stack_node **b, bool checker);
-// void			rra(t_stack_node **a, bool checker);
-// void			rrb(t_stack_node **b, bool checker);
-// void			rrr(t_stack_node **a, t_stack_node **b, bool checker);
-// void	pa(t_stack_node **a, t_stack_node **b, bool checker);
-// void	pb(t_stack_node **b, t_stack_node **a, bool checker);
 
 #endif

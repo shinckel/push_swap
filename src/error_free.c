@@ -12,12 +12,10 @@
 
 #include "push_swap.h"
 
-/*
- * Ad hoc function to free the 2D array
- * created with the ft_split function
- * ATTENTION
- * You have to start from -1 
-*/
+// ad hoc function (deal with problems on an ad hoc basis = as they happen)
+// free the 2D array
+// created with the ft_split function
+// you have to start from -1... why?
 void	free_matrix(char **argv)
 {
 	int	i;

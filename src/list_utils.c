@@ -22,10 +22,8 @@ t_stack_node	*find_last_node(t_stack_node *head)
 	return (head);
 }
 
-/*
- * Search for the last node and append 
- * 🚨 Pay attention if the stack empty?
-*/
+// search for the last node and append
+// what if the stack is empty?
 void	append_node(t_stack_node **stack, int nbr)
 {
 	t_stack_node	*node;
