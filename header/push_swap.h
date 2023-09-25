@@ -59,8 +59,8 @@ typedef struct	s_stack_node
 }				t_stack_node;
 
 // help and check list, user messages
-void	print_list(t_stack_node **list);
-void	user_message(char *str);
+void			print_list(t_stack_node **list);
+void			user_message(char *str);
 
 // handle errors & free
 void			free_matrix(char **argv);
@@ -91,9 +91,9 @@ void			handle_five(t_stack_node **a, t_stack_node **b);
 void			push_swap(t_stack_node **a, t_stack_node **b);
 
 // actions
-void	push(t_stack_node **destRef, t_stack_node **sourceRef, char *str);
-void	rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
-void	reverse_rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
-void	swap(t_stack_node **headRef, char *str);
+void			push(t_stack_node **destRef, t_stack_node **sourceRef, char *str);
+void			rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
+void			reverse_rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
+void			swap(t_stack_node **headRef, char *str);
 
 #endif

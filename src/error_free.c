@@ -28,9 +28,7 @@ void	free_matrix(char **argv)
 	free(argv - 1);
 }
 
-/*
- * Ad hoc function to free a stack
-*/
+// ad hoc function free stack
 void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*tmp;
@@ -48,11 +46,6 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-/*
- * Matrix starts from -1
- * because i artificially made Up
- * equal to argv
-*/
 void	error_free(t_stack_node **a, char **argv, bool flag_argc_2)
 {
 	free_stack(a);
@@ -61,9 +54,7 @@ void	error_free(t_stack_node **a, char **argv, bool flag_argc_2)
 	exit(1);
 }
 
-/*
- * Check if there are some syntactical mistakes
-*/
+// Check if there are some syntactical mistakes
 int	error_syntax(char *str_nbr)
 {
 	if (!(*str_nbr == '+'
@@ -82,9 +73,7 @@ int	error_syntax(char *str_nbr)
 	return (0);
 }
 
-/*
- * Loop into the stack for some repetition
-*/
+// Loop into the stack for some repetition
 int	error_repetition(t_stack_node *a, int nbr)
 {
 	if (NULL == a)
