@@ -6,15 +6,16 @@
 /*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:57:18 by shinckel          #+#    #+#             */
-/*   Updated: 2023/09/04 07:30:26 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:35:57 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Push a node to the top from sourceRef to destRef
-// **destRef is a pointer to a pointer...
+// **destRef and sourceRef are pointers to a pointer...
 // ...so you can change the real value without making a local copy of it
+// doubly-linked lists
 void	push(t_stack_node **destRef, t_stack_node **sourceRef, char *str)
 {
 	t_stack_node *newNode;
