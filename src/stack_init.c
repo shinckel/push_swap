@@ -40,18 +40,19 @@ void	user_message(char *str)
 		write(1, SS, ft_strlen(SS));
 }
 
-void print_list(t_stack_node **list)
-{
-	t_stack_node *current = *list;
+// void print_list(t_stack_node **list)
+// {
+// 	t_stack_node *current = *list;
 
-	while (current != NULL)
-	{
-		printf("%i \n", current->value);
-		current = current->next;
-	}
-}
+// 	while (current != NULL)
+// 	{
+// 		printf("%i \n", current->value);
+// 		current = current->next;
+// 	}
+// }
 /* ************************************************************************** */
 
+// check for errors and then create the stack!
 void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
 {
 	long	nbr;
@@ -61,12 +62,18 @@ void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
+		{
+			write(1, SYNTAX, ft_strlen(SYNTAX));
 			error_free(a, argv, flag_argc_2);
+		}
 		nbr = ft_atoll(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			error_free(a, argv, flag_argc_2);
 		if (error_repetition(*a, (int)nbr))
+		{
+			write(1, REPEAT, ft_strlen(REPEAT));
 			error_free(a, argv, flag_argc_2);
+		}
 		append_node(a, (int)nbr);
 		++i;
 	}

@@ -27,6 +27,7 @@
 # define SUCCESS "\n\e[1;42m SUCCESS you got a sorted list! \e[0m\n"
 # define REPEAT "\e[1;41m ERROR repeated numbers in stack \e[0m\n"
 # define OVERFLOW "\e[1;41m ERROR number overflow \e[0m\n"
+# define SYNTAX "\e[1;41m ERROR syntax error \e[0m\n"
 
 # define PA "\e[1;48;5;027m [pa] push to stack a \e[0m\n"
 # define PB "\e[1;48;5;027m [pb] push to stack b \e[0m\n"
