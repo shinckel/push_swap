@@ -69,6 +69,6 @@ void	handle_five(t_stack_node **a, t_stack_node **b)
 	{
 		init_nodes(*a, *b);
 		finish_rotation(a, find_smallest(*a), 'a');
-		push(b, a, "pb"); //pb(b, a, false);
+		push(b, a, "pb");
 	}
 }
