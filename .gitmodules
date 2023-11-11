@@ -2,6 +2,3 @@
 [submodule "libft"]
 	path = libft
 	url = git@github.com:shinckel/libft.git
-[submodule "push_swap_tester"]
-	path = push_swap_tester
-	url = git@github.com:laisarena/push_swap_tester.git
