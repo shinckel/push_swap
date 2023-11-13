@@ -6,7 +6,7 @@
 /*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:39:52 by shinckel          #+#    #+#             */
-/*   Updated: 2023/08/15 18:16:59 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:57:21 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,25 @@ void	user_message(char *str)
 		write(1, SS, ft_strlen(SS));
 }
 
-// void print_list(t_stack_node **list)
-// {
-// 	t_stack_node *current = *list;
-
-// 	while (current != NULL)
-// 	{
-// 		printf("%i \n", current->value);
-// 		current = current->next;
-// 	}
-// }
+void	print_list(t_stack *list)
+{
+	while (list)
+	{
+		printf("%i\n", list->value);
+		list = list->next;
+	}
+}
 /* ************************************************************************** */
 
 // check for errors and then create the stack!
-void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
+void	stack_init(t_stack **a, char **argv, int argc, bool flag_argc_2)
 {
 	long	nbr;
 	int		i;
+	long long	*stack;
 
 	i = 0;
+	stack = malloc(sizeof(long long) * (argc - 1));
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
@@ -74,8 +74,15 @@ void	stack_init(t_stack_node **a, char **argv, bool flag_argc_2)
 			write(1, REPEAT, ft_strlen(REPEAT));
 			error_free(a, argv, flag_argc_2);
 		}
-		append_node(a, (int)nbr);
+		stack[i] = (int)nbr; //put into stack and normalize
 		++i;
+	}
+	stack = normalize(stack, argc - 1);
+	i = 0;
+	while(i < argc - 1)
+	{
+		append_node(a, stack[i]);
+		i++;
 	}
 	if (flag_argc_2)
 		free_matrix(argv);

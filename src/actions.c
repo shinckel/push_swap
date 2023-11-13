@@ -6,7 +6,7 @@
 /*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:57:18 by shinckel          #+#    #+#             */
-/*   Updated: 2023/09/26 17:35:57 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:55:05 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 // **destRef and sourceRef are pointers to a pointer...
 // ...so you can change the real value without making a local copy of it
 // doubly-linked lists
-void	push(t_stack_node **destRef, t_stack_node **sourceRef, char *str)
+void	push(t_stack **destRef, t_stack **sourceRef, char *str)
 {
-	t_stack_node *newNode;
+	t_stack *newNode;
 
 	if (*sourceRef == NULL)
 		return ;
@@ -42,9 +42,9 @@ void	push(t_stack_node **destRef, t_stack_node **sourceRef, char *str)
 }
 
 // Top node to the bottom position
-void	rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str)
+void	rotate(t_stack **headRef, t_stack **tmpRef, char *str)
 {
-	t_stack_node	*last_node;
+	t_stack	*last_node;
 	int				len;
 
 	len = stack_len(*headRef);
@@ -62,10 +62,10 @@ void	rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str)
 }
 
 // Bottom node to the top position
-void	reverse_rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str)
+void	reverse_rotate(t_stack **headRef, t_stack **tmpRef, char *str)
 {
-	t_stack_node	*last;
-	int				len;
+	t_stack	*last;
+	int     len;
 
 	len = stack_len(*headRef);
 	if (headRef == NULL || *headRef == NULL || len == 1)
@@ -82,7 +82,7 @@ void	reverse_rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str)
 }
 
 // Top node to the second position
-void	swap(t_stack_node **headRef, char *str)
+void	swap(t_stack **headRef, char *str)
 {
 	int	len;
 

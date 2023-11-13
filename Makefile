@@ -6,14 +6,14 @@
 #    By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 14:29:49 by shinckel          #+#    #+#              #
-#    Updated: 2023/08/13 18:34:48 by shinckel         ###   ########.fr        #
+#    Updated: 2023/11/13 21:58:18 by shinckel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := push_swap
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -Iheader -g
-#CFLAGS += -fsanitize=address
+CFLAGS += -fsanitize=address
 
 SRC := $(wildcard src/*.c)
 OBJ := $(SRC:.c=.o)
@@ -34,6 +34,7 @@ $(LIBFT):
 
 $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@git submodule update --init --recursive
 	@echo "$(GREEN) Ready to PUSH_SWAP $(RESET)"
 
 clean:
@@ -50,4 +51,4 @@ clean_libft:
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 # actions that should be executed when the target is invoked
-.PHONY: all clean fclean re clean_libft
+.PHONY: all clean fclean re clean_libft submodule

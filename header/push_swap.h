@@ -6,7 +6,7 @@
 /*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:02:16 by shinckel          #+#    #+#             */
-/*   Updated: 2023/09/27 22:13:08 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/13 22:01:11 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,54 +47,43 @@
 // this is the blueprint of my struct
 // I have to declare it "struct s_stack" because when running the block of code
 // it still didn't get to the part saying: "hey, rename me as t_stack"
-typedef struct	s_stack_node
+typedef struct s_stack
 {
-	int					value;
-	int					current_position;
-	int					push_price;
-	bool				above_median;
-	bool				cheapest;
-	struct s_stack_node	*target_node;
-	struct s_stack_node	*prev;
-	struct s_stack_node	*next;
-}				t_stack_node;
+	int				value;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}					t_stack;
 
 // help and check list, user messages
-void			print_list(t_stack_node **list);
-void			user_message(char *str);
+void		print_list(t_stack *list);
+void		user_message(char *str);
 
 // handle errors & free
-void			free_matrix(char **argv);
-void			error_free(t_stack_node **a, char **argv, bool flag_argc_2);
-void			free_stack(t_stack_node **stack);
-int				error_repetition(t_stack_node *a, int nbr);
-int				error_syntax(char *str_nbr);
-
-// create stack
-void			stack_init(t_stack_node **a, char **argv, bool flag_argc_2);
-void			init_nodes(t_stack_node *a, t_stack_node *b);
-void			set_current_position(t_stack_node *stack);
-void			set_price(t_stack_node *a, t_stack_node *b);
-void			set_cheapest(t_stack_node *b);
-
-// linked list
-void			append_node(t_stack_node **stack, int nbr);
-t_stack_node	*find_last_node(t_stack_node *head);
-t_stack_node	*find_smallest(t_stack_node *stack);
-t_stack_node	*return_cheapest(t_stack_node *stack);
-bool			stack_sorted(t_stack_node *stack);
-int				stack_len(t_stack_node *stack);
-void			finish_rotation(t_stack_node **s, t_stack_node *n, char c);
-
-// algorithms
-void			tiny_sort(t_stack_node **a);
-void			handle_five(t_stack_node **a, t_stack_node **b);
-void			push_swap(t_stack_node **a, t_stack_node **b);
+void		free_matrix(char **argv);
+void		error_free(t_stack **a, char **argv, bool flag_argc_2);
+void		free_stack(t_stack **stack);
+int			error_repetition(t_stack *a, int nbr);
+int			error_syntax(char *str_nbr);
 
 // actions
-void			push(t_stack_node **destRef, t_stack_node **sourceRef, char *str);
-void			rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
-void			reverse_rotate(t_stack_node **headRef, t_stack_node **tmpRef, char *str);
-void			swap(t_stack_node **headRef, char *str);
+void		push(t_stack **destRef, t_stack **sourceRef, char *str);
+void		rotate(t_stack **headRef, t_stack **tmpRef, char *str);
+void		reverse_rotate(t_stack **headRef, t_stack **tmpRef, char *str);
+void		swap(t_stack **headRef, char *str);
+
+// linked list
+void		append_node(t_stack **stack, int nbr);
+t_stack		*find_last_node(t_stack *head);
+bool		stack_sorted(t_stack *stack);
+int			stack_len(t_stack *stack);
+
+// create stack
+void		stack_init(t_stack **a, char **argv, int argc, bool flag_argc_2);
+long long	*normalize(long long *numbers, int len);
+
+// algorithms
+void		radix_sort(t_stack **stack_a, t_stack **stack_b, int len);
+// 3 nodes
+// 5 nodes
 
 #endif

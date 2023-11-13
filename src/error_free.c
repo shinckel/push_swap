@@ -6,7 +6,7 @@
 /*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:56:17 by shinckel          #+#    #+#             */
-/*   Updated: 2023/08/15 17:17:09 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:56:10 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	free_matrix(char **argv)
 }
 
 // ad hoc function free stack
-void	free_stack(t_stack_node **stack)
+void	free_stack(t_stack **stack)
 {
-	t_stack_node	*tmp;
-	t_stack_node	*current;
+	t_stack	*tmp;
+	t_stack	*current;
 
 	if (stack == NULL)
 		return ;
@@ -50,7 +50,7 @@ void	free_stack(t_stack_node **stack)
 
 // exit could return '1' instead of macro 'EXIT_FAILURE'
 // free everything and finish the program
-void	error_free(t_stack_node **a, char **argv, bool flag_argc_2)
+void	error_free(t_stack **a, char **argv, bool flag_argc_2)
 {
 	free_stack(a);
 	if (flag_argc_2)
@@ -80,7 +80,7 @@ int	error_syntax(char *str_nbr)
 }
 
 // Loop into the stack for some repetition
-int	error_repetition(t_stack_node *a, int nbr)
+int	error_repetition(t_stack *a, int nbr)
 {
 	if (a == NULL)
 		return (0);
