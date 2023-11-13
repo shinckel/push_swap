@@ -6,7 +6,7 @@
 /*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:02:16 by shinckel          #+#    #+#             */
-/*   Updated: 2023/11/13 22:01:11 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/13 22:22:20 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../libft/header/libft.h"
 
 // "e" stands for special ANSI codes
+// for using the tester, make sure to comment it and use the macros defibed below
 # define SUCCESS "\n\e[1;42m SUCCESS you got a sorted list! \e[0m\n"
 # define REPEAT "\e[1;41m ERROR repeated numbers in stack \e[0m\n"
 # define OVERFLOW "\e[1;41m ERROR number overflow \e[0m\n"
@@ -43,6 +44,27 @@
 # define SA "\e[1;48;5;226m [sa] swap two top numbers stack a \e[0m\n"
 # define SB "\e[1;48;5;226m [sb] swap two top numbers stack b \e[0m\n"
 # define SS "\e[1;48;5;226m [ss] swap two top numbers both stacks \e[0m\n"
+
+/* ************************************************************************** */
+// # define REPEAT "\e[1;41mError\e[0m\n"
+// # define OVERFLOW "\e[1;41mError\e[0m\n"
+// # define SYNTAX "\e[1;41mError\e[0m\n"
+
+// # define PA "\e[1;48;5;027mpa\e[0m\n"
+// # define PB "\e[1;48;5;027mpb\e[0m\n"
+
+// # define RA "\e[1;48;5;129mra\e[0m\n"
+// # define RB "\e[1;48;5;129mrb\e[0m\n"
+// # define RR "\e[1;48;5;129mrr\e[0m\n"
+
+// # define RRA "\e[1;48;5;018mrra\e[0m\n"
+// # define RRB "\e[1;48;5;018mrrb\e[0m\n"
+// # define RRR "\e[1;48;5;018mrrr\e[0m\n"
+
+// # define SA "\e[1;48;5;226msa\e[0m\n"
+// # define SB "\e[1;48;5;226msb\e[0m\n"
+// # define SS "\e[1;48;5;226mss\e[0m\n"
+/* ************************************************************************** */
 
 // this is the blueprint of my struct
 // I have to declare it "struct s_stack" because when running the block of code

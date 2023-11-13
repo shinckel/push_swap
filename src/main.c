@@ -6,7 +6,7 @@
 /*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 19:06:40 by shinckel          #+#    #+#             */
-/*   Updated: 2023/11/13 21:55:27 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/13 22:22:43 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ int	main(int argc, char **argv)
 	printf("after: \n");
 	print_list(a);
 	free_stack(&a);
-	write(1, SUCCESS, ft_strlen(SUCCESS));
+	write(1, SUCCESS, ft_strlen(SUCCESS)); //for testing it, comment this line
 }
