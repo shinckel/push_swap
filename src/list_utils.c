@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: shinckel <shinckel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 17:12:51 by shinckel          #+#    #+#             */
-/*   Updated: 2023/11/13 22:03:13 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:10:54 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 // return last node position in the list
 t_stack	*find_last_node(t_stack *head)
 {
-	if (head == NULL)
+	if (!head)
 		return (NULL);
-	while (head->next)
+	while (head->next != NULL)
 		head = head->next;
 	return (head);
 }
@@ -30,11 +30,11 @@ void	append_node(t_stack **headRef, int nbr)
 	t_stack	*last_node;
 
 	node = malloc(sizeof(t_stack));
-	if (node == NULL)
+	if (!node)
 		return ;
 	node->next = NULL;
 	node->value = nbr;
-	if (*headRef == NULL)
+	if (!(*headRef))
 	{
 		*headRef = node;
 		node->prev = NULL;

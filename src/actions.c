@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: shinckel <shinckel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:57:18 by shinckel          #+#    #+#             */
-/*   Updated: 2023/11/13 21:55:05 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:03:02 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,25 @@
 // doubly-linked lists
 void	push(t_stack **destRef, t_stack **sourceRef, char *str)
 {
-	t_stack *newNode;
+	t_stack	*new_node;
 
 	if (*sourceRef == NULL)
 		return ;
-	newNode = *sourceRef;
+	new_node = *sourceRef;
 	*sourceRef = (*sourceRef)->next;
 	if (*sourceRef)
 		(*sourceRef)->prev = NULL;
-	newNode->prev = NULL;
+	new_node->prev = NULL;
 	if (*destRef == NULL)
 	{
-		*destRef = newNode;
-		newNode->next = NULL;
+		*destRef = new_node;
+		new_node->next = NULL;
 	}
 	else
 	{
-		newNode->next = *destRef;
-		newNode->next->prev = newNode;
-		*destRef = newNode;
+		new_node->next = *destRef;
+		new_node->next->prev = new_node;
+		*destRef = new_node;
 	}
 	user_message(str);
 }
@@ -45,7 +45,7 @@ void	push(t_stack **destRef, t_stack **sourceRef, char *str)
 void	rotate(t_stack **headRef, t_stack **tmpRef, char *str)
 {
 	t_stack	*last_node;
-	int				len;
+	int		len;
 
 	len = stack_len(*headRef);
 	if (headRef == NULL || *headRef == NULL || len == 1)
@@ -65,7 +65,7 @@ void	rotate(t_stack **headRef, t_stack **tmpRef, char *str)
 void	reverse_rotate(t_stack **headRef, t_stack **tmpRef, char *str)
 {
 	t_stack	*last;
-	int     len;
+	int		len;
 
 	len = stack_len(*headRef);
 	if (headRef == NULL || *headRef == NULL || len == 1)
@@ -82,13 +82,23 @@ void	reverse_rotate(t_stack **headRef, t_stack **tmpRef, char *str)
 }
 
 // Top node to the second position
-void	swap(t_stack **headRef, char *str)
+void	swap(t_stack **headRef, int flag, char *str)
 {
-	int	len;
+	int		len;
+	int		tmp;
+	bool	state;
 
+	state = true;
 	len = stack_len(*headRef);
 	if (headRef == NULL || *headRef == NULL || len == 1)
 		return ;
-	*headRef = (*headRef)->next;
-	user_message(str);
+	if (flag)
+		state = (*headRef)->value > (*headRef)->next->value;
+	if (state)
+	{
+		tmp = (*headRef)->value;
+		(*headRef)->value = (*headRef)->next->value;
+		(*headRef)->next->value = tmp;
+		user_message(str);
+	}
 }

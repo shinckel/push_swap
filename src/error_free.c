@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: shinckel <shinckel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:56:17 by shinckel          #+#    #+#             */
-/*   Updated: 2023/11/13 21:56:10 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/14 22:40:01 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ void	free_matrix(char **argv)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (argv == NULL || *argv == NULL)
 		return ;
 	while (argv[i])
 		free(argv[i++]);
-	// why -1 here???
-	free(argv - 1);
+	free(argv);
 }
 
 // ad hoc function free stack
@@ -59,36 +58,56 @@ void	error_free(t_stack **a, char **argv, bool flag_argc_2)
 }
 
 // Check if there are some syntactical mistakes
-// remember: your program should accept both positive and negative numbers
+// remember: your program should accept both positive and negative stack
 // *++str_nbr if the element has more than one char, check if it is a number
 int	error_syntax(char *str_nbr)
 {
+	int	flag;
+
+	flag = 0;
 	if (!(str_nbr[0] == '+'
 			|| str_nbr[0] == '-'
 			|| (str_nbr[0] >= '0' && str_nbr[0] <= '9')))
-		return (1);
+		flag = 1;
 	if ((str_nbr[0] == '+'
 			|| str_nbr[0] == '-')
 		&& !(str_nbr[1] >= '0' && str_nbr[1] <= '9'))
-		return (1);
+		flag = 1;
 	while (*++str_nbr)
 	{
 		if (!(*str_nbr >= '0' && *str_nbr <= '9'))
-			return (1);
+			flag = 1;
 	}
-	return (0);
+	if (flag)
+		write(1, SYNTAX, ft_strlen(SYNTAX));
+	return (flag);
 }
 
-// Loop into the stack for some repetition
-int	error_repetition(t_stack *a, int nbr)
+int	error_repetition(long long *stack, int len)
 {
-	if (a == NULL)
-		return (0);
-	while (a)
+	int	i;
+	int	j;
+	int	flag;
+
+	i = 0;
+	flag = 0;
+	while (i < (len - 1))
 	{
-		if (a->value == nbr)
-			return (1);
-		a = a->next;
+		j = i + 1;
+		while (j < len)
+		{
+			if (stack[i] == stack[j++])
+			{
+				flag = 1;
+				break ;
+			}
+		}
+		i++;
 	}
-	return (0);
+	if (flag)
+	{
+		free(stack);
+		write(1, REPEAT, ft_strlen(REPEAT));
+	}
+	return (flag);
 }

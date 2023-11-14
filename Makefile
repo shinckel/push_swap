@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: shinckel <shinckel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 14:29:49 by shinckel          #+#    #+#              #
-#    Updated: 2023/11/13 21:58:18 by shinckel         ###   ########.fr        #
+#    Updated: 2023/11/14 18:23:28 by shinckel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: shinckel <shinckel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:54:51 by shinckel          #+#    #+#             */
-/*   Updated: 2023/11/13 22:02:01 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/14 23:17:04 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,45 +17,45 @@ int	get_bit(int bit_index, int n)
 	return (n >> bit_index & 1);
 }
 
-void	operations(t_stack **stack_a, t_stack **stack_b, int bit_index)
+void	operations(t_stack **a, t_stack **b, int bit_index)
 {
 	int	size;
 	int	i;
 
-	while (*stack_b)
-		push(stack_a, stack_b, "pa");
-	size = stack_len(*stack_a);
+	while (*b)
+		push(a, b, "pa");
+	size = stack_len(*a);
 	i = 0;
 	while (i < size)
 	{
-		if ((stack_sorted(*stack_a) && *stack_b == NULL))
+		if ((stack_sorted(*a) && *b == NULL))
 			break ;
-		if (get_bit(bit_index, (*stack_a)->value))
-			rotate(stack_a, NULL, "ra");
+		if (get_bit(bit_index, (*a)->value))
+			rotate(a, NULL, "ra");
 		else
-			push(stack_b, stack_a, "pb");
+			push(b, a, "pb");
 		i++;
 	}
 }
 
-void	radix_sort(t_stack **stack_a, t_stack **stack_b, int len)
+void	radix_sort(t_stack **a, t_stack **b, int len)
 {
 	int	i;
-	if (len == 3)
-	{
-		// sort 3 nodes list
-		return ;
-	}
-	if (len == 5)
-	{
-		// sort 5 nodes list
-		return ;
-	}
+
 	i = -1;
-	while (++i < 33)
+	if (len == 2)
+		swap(a, 0, "sa");
+	else if (len == 3)
+		sort_three(a);
+	else if (len == 4 || len == 5)
+		sort_five(a, b);
+	else
 	{
-		operations(stack_a, stack_b, i);
-		if ((stack_sorted(*stack_a) && *stack_b == NULL))
-			break ;
+		while (++i < 25)
+		{
+			operations(a, b, i);
+			if ((stack_sorted(*a) && *b == NULL))
+				break ;
+		}
 	}
 }

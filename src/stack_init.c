@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shinckel <shinckel@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: shinckel <shinckel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 11:39:52 by shinckel          #+#    #+#             */
-/*   Updated: 2023/11/13 21:57:21 by shinckel         ###   ########.fr       */
+/*   Updated: 2023/11/14 22:35:52 by shinckel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,24 @@ void	print_list(t_stack *list)
 }
 /* ************************************************************************** */
 
+static void	create_list(t_stack **a, long long *numbers, int argc)
+{
+	int	i;
+
+	i = 0;
+	while (i < argc - 1)
+	{
+		append_node(a, numbers[i]);
+		i++;
+	}
+	free (numbers);
+}
+
 // check for errors and then create the stack!
 void	stack_init(t_stack **a, char **argv, int argc, bool flag_argc_2)
 {
-	long	nbr;
-	int		i;
+	long		nbr;
+	int			i;
 	long long	*stack;
 
 	i = 0;
@@ -62,28 +75,20 @@ void	stack_init(t_stack **a, char **argv, int argc, bool flag_argc_2)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-		{
-			write(1, SYNTAX, ft_strlen(SYNTAX));
 			error_free(a, argv, flag_argc_2);
-		}
 		nbr = ft_atoll(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a, argv, flag_argc_2);
-		if (error_repetition(*a, (int)nbr))
 		{
-			write(1, REPEAT, ft_strlen(REPEAT));
+			write(1, OVERFLOW, ft_strlen(OVERFLOW));
 			error_free(a, argv, flag_argc_2);
 		}
-		stack[i] = (int)nbr; //put into stack and normalize
+		stack[i] = (int)nbr;
 		++i;
 	}
+	if (error_repetition(stack, argc - 1))
+		error_free(a, argv, flag_argc_2);
 	stack = normalize(stack, argc - 1);
-	i = 0;
-	while(i < argc - 1)
-	{
-		append_node(a, stack[i]);
-		i++;
-	}
+	create_list(a, stack, argc);
 	if (flag_argc_2)
 		free_matrix(argv);
 }
